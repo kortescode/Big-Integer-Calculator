@@ -81,7 +81,7 @@ struct
       let expr = Parser.main Lexer.token (get_lexbuf ())
       in let result = Arithexpr.ArithExpr.solve_arith_expr expr
 	 in let str = Bigint.Bigint.string_of_bigint_base (get_obase ()) result
-	    in begin print_endline str; launch (); close_fd () end
+	    in begin print_endline ("= "^str); launch (); close_fd () end
     with
       | Parser.Error	          -> begin print_endline "error: parsing: bad syntax"; launch () end
       | Failure	str		  -> begin print_endline ("error: "^str); launch () end
