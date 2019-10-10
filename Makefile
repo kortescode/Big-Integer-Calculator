@@ -1,7 +1,7 @@
 RM			=	rm -f
 PRINT		=	printf
 
-CAMLFLAGS	=	-w Aelz -warn-error A
+CAMLFLAGS	=	-w Aelz -warn-error a
 OCAMLC		=	ocamlc $(CAMLFLAGS)
 OCAMLOPT	=	ocamlopt $(CAMLFLAGS)
 OCAMLLEX	=	ocamllex

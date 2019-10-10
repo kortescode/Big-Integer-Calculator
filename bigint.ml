@@ -140,12 +140,12 @@ struct
       else let char =
 	     if (modul (neg, bigint) base) < 10 then Char.chr((modul (neg, bigint) base) + (Char.code '0'))
 	     else Char.chr((modul (neg, bigint) base) + 55)
-	   in begin Bytes.set str ndx char; divi (neg, bigint) base 0 0.0; string_of_bigint_base_create str base (ndx - 1) end
+	   in begin String.set str ndx char; divi (neg, bigint) base 0 0.0; string_of_bigint_base_create str base (ndx - 1) end
     in match base with
-      | Binary	    -> string_of_bigint_base_create (Bytes.create (Array.length bigint * 4)) 2 ((Array.length bigint * 4) - 1)
-      | Octal	    -> string_of_bigint_base_create (Bytes.create (Array.length bigint * 2)) 8 ((Array.length bigint * 2) - 1)
-      | Decimal	    -> string_of_bigint_base_create (Bytes.create (Array.length bigint)) 10 ((Array.length bigint) - 1)
-      | Hexadecimal -> string_of_bigint_base_create (Bytes.create (Array.length bigint)) 16 ((Array.length bigint) - 1)
+      | Binary	    -> string_of_bigint_base_create (String.create (Array.length bigint * 4)) 2 ((Array.length bigint * 4) - 1)
+      | Octal	    -> string_of_bigint_base_create (String.create (Array.length bigint * 2)) 8 ((Array.length bigint * 2) - 1)
+      | Decimal	    -> string_of_bigint_base_create (String.create (Array.length bigint)) 10 ((Array.length bigint) - 1)
+      | Hexadecimal -> string_of_bigint_base_create (String.create (Array.length bigint)) 16 ((Array.length bigint) - 1)
 
   let string_of_bigint (neg, bigint) =
     string_of_bigint_base Decimal (neg, bigint)
