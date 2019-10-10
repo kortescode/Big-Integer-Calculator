@@ -1,4 +1,4 @@
-# Big Integer Calculator
+# Big Integer Calculator [![Build Status](https://travis-ci.org/kortescode/Big-Integer-Calculator.svg?branch=master)](https://travis-ci.org/kortescode/Big-Integer-Calculator)
 
 Big Integer Calculator is a OCaml executable. It performa arithmetis operations with 100+ digit numbers.
 
