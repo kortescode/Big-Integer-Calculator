@@ -81,11 +81,11 @@ struct
       let expr = Parser.main Lexer.token (get_lexbuf ())
       in let result = Arithexpr.ArithExpr.solve_arith_expr expr
 	 in let str = Bigint.Bigint.string_of_bigint_base (get_obase ()) result
-	    in begin print_endline ("= "^str); launch (); close_fd () end
+	    in begin print_endline ("= "^str^"\n"); launch (); close_fd () end
     with
-      | Parser.Error	          -> begin print_endline "error: parsing: bad syntax"; launch () end
-      | Failure	str		  -> begin print_endline ("error: "^str); launch () end
-      | Bigint.Bigint.OpByZero op -> begin print_endline ("error: bistro: can't "^op^" by zero"); launch () end
+      | Parser.Error              -> begin print_endline "error: parsing: bad syntax\n"; launch () end
+      | Failure	str               -> begin print_endline ("error: "^str^"\n"); launch () end
+      | Bigint.Bigint.OpByZero op -> begin print_endline ("error: bistro: can't "^op^" by zero\n"); launch () end
 
   (************************************)
   (*          Init functions          *)
@@ -102,6 +102,7 @@ struct
 
   let init () =
     begin
+      print_endline "";
       Sys.set_signal Sys.sigint Sys.Signal_ignore;
       Arg.parse [ ("-obase", Arg.Int(set_obase), "Conversion base for output numbers") ] (set_ifile) "usage: ./bistro [-obase (2|8|10|16)] [inputfile]"
     end
@@ -114,10 +115,10 @@ struct
     try
       begin init (); launch () end
     with
-      | AlreadyDefined obj		 -> print_endline ("error: bistro: "^obj^" is already defined")
-      | BadBaseVal nbr			 -> begin print_string "error: bistro: bad out base value "; print_int nbr; print_endline "" end
-      | Unix.Unix_error (err, fct, file) -> print_endline ("error: unix: can't perform "^fct^" on file \""^file^"\"")
-      | Eof				 -> ()
-      | _		        	 -> print_endline "error: bistro: unknown error"
+      | AlreadyDefined obj               -> print_endline ("error: bistro: "^obj^" is already defined\n")
+      | BadBaseVal nbr                   -> begin print_string "error: bistro: bad out base value "; print_int nbr; print_endline "\n" end
+      | Unix.Unix_error (err, fct, file) -> print_endline ("error: unix: can't perform "^fct^" on file \""^file^"\"\n")
+      | Eof                              -> ()
+      | _                                -> print_endline "error: bistro: unknown error\n"
 
 end
